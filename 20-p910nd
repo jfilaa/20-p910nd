@@ -3,9 +3,7 @@
 case "$ACTION" in
         add)
                 [ -n "${DEVNAME}" ] && [ "${DEVNAME##usb/lp*}" = "" ] && {
-                        chmod 660 /dev/"$DEVNAME"
-                        chgrp lp /dev/"$DEVNAME"
-
+                        
                         PRINTERNAME=`cut -d: -f4 /sys/class/usbmisc/$DEVICENAME/device/ieee1284_id | sed -e 's/;.*//' | sed -e 's/ .*//'`
                         ln -s /dev/$DEVNAME /dev/$PRINTERNAME
                         mkdir /tmp/printers
